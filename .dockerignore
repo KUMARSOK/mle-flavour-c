@@ -1,0 +1,4 @@
+venv/
+mlruns/
+.git/
+__pycache__/
