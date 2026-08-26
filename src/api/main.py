@@ -11,9 +11,12 @@ MODEL_PATH = "models/logistic_model.pkl"
 VECTORIZER_PATH = "models/tfidf_vectorizer.pkl"
 LOG_FILE = "data/processed/prediction_logs.csv"
 
+# FIX: Force the creation of the directory before creating the file!
+os.makedirs(os.path.dirname(LOG_FILE), exist_ok=True)
+
 # Create log file with headers if it doesn't exist
 if not os.path.exists(LOG_FILE):
-    with open(LOG_FILE, "w", newline="") as f:
+    with open(LOG_FILE, "w", newline="", encoding="utf-8") as f:
         csv.writer(f).writerow(["timestamp", "text", "prediction", "confidence"])
 
 if os.path.exists(MODEL_PATH) and os.path.exists(VECTORIZER_PATH):
